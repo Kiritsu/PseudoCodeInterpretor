@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk\bin\java.exe" -classpath ".\jansi-1.4.jar;." Interpreteur

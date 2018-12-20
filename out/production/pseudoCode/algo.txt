@@ -1,0 +1,71 @@
+ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN ALGORITHME Test
+constante:
+	OUI <-- 1
+variable:
+	i : entier
+DEBUT
+    i <-- 5
+    
+    ecrire("oui")
+    ecrire(i)
+FIN 
