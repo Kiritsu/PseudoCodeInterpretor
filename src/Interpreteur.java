@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
-public class Interpreteur {
+public final class Interpreteur {
     /**
      * Instance de notre lecteur. Nous permet de récuppérer les lignes de code nécessaires.
      */

@@ -4,7 +4,7 @@
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
-public class Variable {
+public final class Variable {
     /**
      * Nom de la variable.
      */

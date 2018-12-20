@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
-public class InterfaceConsole {
+public final class InterfaceConsole {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_BG_RED = "\u001B[41m";
     private static final String ANSI_BG = "\u001B[43m";

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
-public class Lecteur {
+public final class Lecteur {
     /**
      * Chemin vers le fichier à lire.
      */

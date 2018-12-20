@@ -7,7 +7,7 @@ import javax.script.ScriptEngineManager;
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
-public class Scripting {
+public final class Scripting {
     /**
      * Manager permettant de créer le moteur de scripting pour le langage JavaScript.
      */
@@ -24,6 +24,13 @@ public class Scripting {
     static {
         factory = new ScriptEngineManager();
         engine = factory.getEngineByExtension("js");
+    }
+
+    /**
+     * Empêche la classe d'être instanciée.
+     */
+    private Scripting() {
+
     }
 
     /**
