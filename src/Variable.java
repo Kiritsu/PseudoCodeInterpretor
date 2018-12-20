@@ -1,3 +1,9 @@
+/**
+ * Classe représentant une variable. Une variable est composée d'un nom, d'un type et d'une valeur.
+ * Une variable peut être constante.
+ * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
+ * @version 1.0 2018-12-20
+ */
 public class Variable {
     /**
      * Nom de la variable.
@@ -18,6 +24,11 @@ public class Variable {
      * Indique si la variable est une constante.
      */
     private boolean constante;
+
+    /**
+     * Indique si la variable est tracée.
+     */
+    private boolean tracee;
 
     /**
      * Initialise une variable non constante.
@@ -42,6 +53,9 @@ public class Variable {
         this.type = type;
         this.valeur = valeur;
         this.constante = true;
+        this.tracee = false;
+
+        Scripting.modifieVariable(nom, valeur);
     }
 
     /**
@@ -51,6 +65,16 @@ public class Variable {
     public void setValeur(String valeur) {
         if (!constante) {
             this.valeur = valeur;
+            Scripting.modifieVariable(nom, valeur);
+        }
+    }
+
+    /**
+     * Indique si la variable courante est tracée. Ne fonctionne uniquement si la variable n'est pas une constante.
+     */
+    public void setTracee(boolean tracee) {
+        if (!constante) {
+            this.tracee = tracee;
         }
     }
 

@@ -1,17 +1,47 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe principale. Elle contient les variables à tracer, les traces d'exécution
+ * ainsi que la gestion de l'entrée clavier.
+ * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
+ * @version 1.0 2018-12-20
+ */
 public class Interpreteur {
+    /**
+     * Instance de notre lecteur. Nous permet de récuppérer les lignes de code nécessaires.
+     */
     private Lecteur lecteur;
+
+    /**
+     * Instance de notre interface de type console.
+     */
     private InterfaceConsole console;
 
+    /**
+     * Scanner nous permettant de gérer l'entrée clavier.
+     */
     private Scanner scanner;
 
+    /**
+     * Indique la ligne en cours de traitement/évaluation.
+     */
     private int numLigneTraitee;
 
+    /**
+     * Représente la liste des variables tracées.
+     */
     private ArrayList<Variable> variablesTracees;
+
+    /**
+     * Représente la liste des traces d'exécutions sur la console.
+     */
     private ArrayList<String> traceExecution;
 
+    /**
+     * Créé les différentes instances nécessaires au bon fonctionnement du programme.
+     * @param chemin Chemin vers le fichier à interprêter.
+     */
     public Interpreteur(String chemin) {
         lecteur = new Lecteur(chemin);
         console = new InterfaceConsole(lecteur, this);
@@ -23,6 +53,9 @@ public class Interpreteur {
         numLigneTraitee = 0;
     }
 
+    /**
+     * Démarre la gestion de l'entrée clavier.
+     */
     public void demarrer() {
         while (true) {
             if (numLigneTraitee >= lecteur.getLignes().length) {
@@ -51,16 +84,26 @@ public class Interpreteur {
         }
     }
 
+    /**
+     * Interprête les lignes de code allant de la première jusqu'à celle étant actuellement traitée.
+     */
     public void interprete() {
         String ligne = lecteur.getLignes()[numLigneTraitee];
 
-
     }
 
+    /**
+     * Retourne le numéro de ligne en cours de traitement.
+     */
     public int getNumLigneTraitee() {
         return numLigneTraitee;
     }
 
+    /**
+     * Retourne la 'i'ème variable tracée.
+     * @param i Index représentant la variable tracée à retourner.
+     * @return
+     */
     public Variable getVariableTracee(int i) {
         i--;
 
@@ -71,28 +114,17 @@ public class Interpreteur {
         return variablesTracees.get(i);
     }
 
-    public String getTraceExecution() {
-        StringBuilder str = new StringBuilder();
-
-        String x;
-        if (traceExecution.size() >= 3) {
-            x = traceExecution.get(traceExecution.size() - 3);
-            str.append(String.format("| %-149s|\n", x));
-        }
-
-        if (traceExecution.size() >= 2) {
-            x = traceExecution.get(traceExecution.size() - 2);
-            str.append(String.format("| %-149s|\n", x));
-        }
-
-        if (traceExecution.size() >= 1) {
-            x = traceExecution.get(traceExecution.size() - 1);
-            str.append(String.format("| %-149s|\n", x));
-        }
-
-        return str.toString();
+    /**
+     * Retourne notre trace d'exécution.
+     */
+    public ArrayList<String> getTraceExecution() {
+        return this.traceExecution;
     }
 
+    /**
+     * Initialise le programme.
+     * @param args Non utilisé.
+     */
     public static void main(String[] args) {
         new Interpreteur("algo.txt").demarrer();
     }
