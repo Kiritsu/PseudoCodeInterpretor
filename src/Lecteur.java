@@ -2,6 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+/**
+ * Lecteur personnalisé de fichier.
+ * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
+ * @version 1.0 2018-12-20
+ */
 public class Lecteur {
     /**
      * Chemin vers le fichier à lire.
@@ -45,6 +50,10 @@ public class Lecteur {
      * Lis le fichier afin de récuppérer l'entièreté de son contenu.
      */
     public void lire() {
+        if (lu) {
+            return;
+        }
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(chemin));
 
