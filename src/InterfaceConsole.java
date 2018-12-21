@@ -10,8 +10,12 @@ import java.util.ArrayList;
  */
 public final class InterfaceConsole {
     private static final String ANSI_RESET = "\u001B[0m";
+
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+
     private static final String ANSI_BG_RED = "\u001B[41m";
-    private static final String ANSI_BG = "\u001B[43m";
 
     /**
      * Instance de notre lecteur. Nous permet de récuppérer les lignes de code nécessaires.
@@ -65,7 +69,7 @@ public final class InterfaceConsole {
 
         str.append("\033[H\033[2J");
 
-        String tirets = new String(new char[150]).replace('\0', '-');
+        String tirets = new String(new char[138]).replace('\0', '-');
 
         int numLigneTraitee = interpreteur.getNumLigneTraitee();
         int debut = numLigneTraitee - 15;
@@ -84,21 +88,34 @@ public final class InterfaceConsole {
         if (numLigneTraitee > lignes.length - 15) {
             fin = lignes.length;
             debut = fin - 30;
+
+            if (debut < 0) {
+                debut = 0;
+                fin = 30;
+            }
         }
 
         //Affichage de l'en-tête
         str.append("+" + tirets + "+\n");
-        str.append(String.format("|      | Code %92s | Trace des variables %21s |\n", " ", " "));
+        str.append(String.format("|      | Code %80s | Trace des variables %21s |\n", " ", " "));
         str.append("+" + tirets + "+\n");
 
         //Affichage du code
         for (int i = debut; i < fin; i++) {
-            if (i == numLigneTraitee) {
-                str.append(String.format(ANSI_BG_RED + "|  %02d  | %-97s |" + ANSI_RESET + " %-41s |\n",
-                        i + 1, lignes[i].replace("\t", "    "), getTraceVariable(i)));
+            String ligne;
+            if (i < lignes.length) {
+                ligne = lignes[i];
             } else {
-                str.append(String.format("|  %02d  | %-97s | %-41s |" + "\n", i + 1,
-                        lignes[i].replace("\t", "    "), getTraceVariable(i)));
+                ligne = " ";
+            }
+
+            ligne = ligne.replace("\t", "    ");
+            ligne = colorie(String.format("%-85s", ligne));
+
+            if (i == numLigneTraitee) {
+                str.append(String.format(ANSI_BG_RED + "|  %02d  | %-85s |" + ANSI_RESET + " %-41s |\n", i + 1, ligne, getTraceVariable(i)));
+            } else {
+                str.append(String.format("|  %02d  | %-85s | %-41s |" + "\n", i + 1, ligne, getTraceVariable(i)));
             }
         }
 
@@ -106,9 +123,11 @@ public final class InterfaceConsole {
         str.append("\n\n");
 
         str.append("+" + tirets + "+\n");
-        str.append(String.format("| Console %140s |\n", " "));
+        str.append(String.format("| Console %128s |\n", " "));
         str.append("+" + tirets + "+\n");
-        str.append(String.format("%-80s\n", getTraceExecution()));
+        str.append(String.format("| %-136s |\n", getTraceExecution(0)));
+        str.append(String.format("| %-136s |\n", getTraceExecution(1)));
+        str.append(String.format("| %-136s |\n", getTraceExecution(2)));
         str.append("+" + tirets + "+\n");
 
         if (windowsUser) {
@@ -116,6 +135,38 @@ public final class InterfaceConsole {
         } else {
             System.out.println(str);
         }
+    }
+
+    /**
+     * Colorie la ligne donnée en paramètre en fonction de ses mots clef.
+     *
+     * @param ligne Ligne à colorier.
+     * @return La ligne coloriée.
+     */
+    public String colorie(String ligne) {
+        String commentaire = "";
+        if (ligne.matches(".*//.*")) {
+            commentaire = ligne.substring(ligne.indexOf("//"));
+            ligne = ligne.substring(0, ligne.indexOf("//"));
+        }
+
+        commentaire = ANSI_GREEN + commentaire + ANSI_RESET;
+
+        //coloration des fonctions.
+        try {
+            ligne = ligne.replaceAll("([é\\w]+[\\s]*)\\(", ANSI_YELLOW + "$1" + ANSI_RESET + "(");
+        } catch (Exception e) {
+
+        }
+
+        //coloration des ""
+        try {
+            ligne = ligne.replaceAll("(\".*\")", ANSI_BLUE + "$1" + ANSI_RESET);
+        } catch (Exception e) {
+
+        }
+
+        return ligne + commentaire;
     }
 
     /**
@@ -140,26 +191,24 @@ public final class InterfaceConsole {
 
     /**
      * Retourne les trois dernières valeurs formattées de la trace d'exécution.
+     *
+     * @param i 'i'ème dernière trace d'exécution.
      */
-    public String getTraceExecution() {
+    public String getTraceExecution(int i) {
         StringBuilder str = new StringBuilder();
 
         ArrayList<String> traceExecution = interpreteur.getTraceExecution();
 
-        String x;
+        if (traceExecution.size() <= i) {
+            return str.toString();
+        }
+
         if (traceExecution.size() >= 3) {
-            x = traceExecution.get(traceExecution.size() - 3);
-            str.append(String.format("| %-149s|\n", x));
-        }
+            System.out.println("Size : " + traceExecution.size() + " ; i: " + i);
 
-        if (traceExecution.size() >= 2) {
-            x = traceExecution.get(traceExecution.size() - 2);
-            str.append(String.format("| %-149s|\n", x));
-        }
-
-        if (traceExecution.size() >= 1) {
-            x = traceExecution.get(traceExecution.size() - 1);
-            str.append(String.format("| %-149s|\n", x));
+            str.append(traceExecution.get(traceExecution.size() - (3 - i)));
+        } else {
+            str.append(traceExecution.get(i));
         }
 
         return str.toString();

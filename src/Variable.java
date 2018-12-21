@@ -97,6 +97,10 @@ public final class Variable {
         }
     }
 
+    public boolean estTracee() {
+        return this.tracee;
+    }
+
     /**
      * Retourne la valeur de la variable.
      */

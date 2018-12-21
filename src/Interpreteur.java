@@ -35,6 +35,11 @@ public final class Interpreteur {
     private ArrayList<Variable> variablesTracees;
 
     /**
+     * Représente la liste des variables.
+     */
+    private ArrayList<Variable> variables;
+
+    /**
      * Représente la liste des traces d'exécutions sur la console.
      */
     private ArrayList<String> traceExecution;
@@ -50,6 +55,7 @@ public final class Interpreteur {
         scanner = new Scanner(System.in);
 
         variablesTracees = new ArrayList<>();
+        variables = new ArrayList<>();
         traceExecution = new ArrayList<>();
 
         numLigneTraitee = 0;
@@ -59,6 +65,8 @@ public final class Interpreteur {
      * Démarre la gestion de l'entrée clavier.
      */
     public void demarrer() {
+        creeVariables();
+
         while (true) {
             if (numLigneTraitee >= lecteur.getLignes().length) {
                 break;
@@ -70,20 +78,27 @@ public final class Interpreteur {
             String valeur = scanner.nextLine();
             if (valeur.equals("")) {
                 numLigneTraitee++;
-            } else if (valeur.equals("b")) {
+            } else if (valeur.toLowerCase().equals("b")) {
                 numLigneTraitee--;
 
                 if (numLigneTraitee < 0) {
                     numLigneTraitee = 0;
                 }
-            } else if (valeur.startsWith("l")) {
+            } else if (valeur.toLowerCase().startsWith("l")) {
                 numLigneTraitee = Integer.valueOf(valeur.substring(1)) - 1;
-            }
-
-            else if (valeur.equals("q")) {
+            } else if (valeur.toLowerCase().equals("q")) {
                 break;
             }
         }
+    }
+
+    /**
+     * Lis le code une première fois afin de lire les variables et constantes déclarées.
+     *
+     * @return Retourne un booleen pour bloquer la méthode.
+     */
+    public boolean creeVariables() {
+        return false;
     }
 
     /**
