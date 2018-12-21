@@ -65,7 +65,12 @@ public final class Interpreteur {
      * Démarre la gestion de l'entrée clavier.
      */
     public void demarrer() {
-        creeVariables();
+        creerVariables();
+        demanderTracage();
+
+        for (Variable v : variables) {
+            System.out.println(v);
+        }
 
         while (true) {
             if (numLigneTraitee >= lecteur.getLignes().length) {
@@ -97,8 +102,68 @@ public final class Interpreteur {
      *
      * @return Retourne un booleen pour bloquer la méthode.
      */
-    public boolean creeVariables() {
-        return false;
+    public boolean creerVariables() {
+        String lignes[] = lecteur.getLignes();
+
+        for (String ligne : lignes) {
+            ligne = ligne.replace("\t", "");
+
+            if (ligne.equals("DEBUT")) {
+                break;
+            }
+
+            if (ligne.matches(" *(\\w+) *: *(\\w+)")) {
+                String[] vals = ligne.replace(" ", "").split(":");
+                variables.add(new Variable(vals[0], vals[1]));
+            } else if (ligne.replace("\t", "").matches(" *(\\w+) *<-- *(\\w+)")) {
+                String[] vals = ligne.split("<--");
+                variables.add(new Variable(vals[0].replace(" ", ""), determineType(vals[1]), vals[1]));
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Détermine le type de la variable constante.
+     * @param valeur Valeur donnée à une constante.
+     * @return Type de la variable constante.
+     */
+    public String determineType(String valeur) {
+        valeur = valeur.replace("\t", "");
+        if (valeur.startsWith("\"") && valeur.endsWith("\"")) {
+            return "chaine";
+        } else if (valeur.startsWith("'") && valeur.endsWith("'")) {
+            return "caractere";
+        } else if (valeur.equals("vrai") || valeur.equals("vraie") || valeur.equals("faux") || valeur.equals("fausse")) {
+            return "booleen";
+        } else {
+            try {
+                Integer.parseInt(valeur.replace("\t", "").replace(" ", ""));
+                return "entier";
+            } catch (Exception e) {
+                return "reel";
+            }
+        }
+    }
+
+    /**
+     * Demande pour chaque variable si on souhaite qu'elle soit tracée.
+     */
+    public void demanderTracage() {
+        for (Variable var : variables) {
+            if (var.estConstante()) {
+                continue;
+            }
+
+            System.out.flush();
+            System.out.println("Souhaitez-vous tracer la variable : " + var.getNom() + " (" + var.getType() + ") ? [Y/n]");
+            String ligne = scanner.nextLine();
+
+            if (ligne.equals("") || ligne.toLowerCase().charAt(0) == 'y') {
+                var.setTracee(true);
+            }
+        }
     }
 
     /**

@@ -132,4 +132,9 @@ public final class Variable {
     public boolean estConstante() {
         return this.constante;
     }
+
+    @Override
+    public String toString() {
+        return getNom() + " (" + getType() + ") : " + getValeur();
+    }
 }

@@ -159,6 +159,11 @@ public final class InterfaceConsole {
 
         }
 
+        //ecrire("Je me nome allan j'ai "+ allan.getAge() +"ans => eu avec getAge()")
+        //Recrire("Je me nome allan j'ai "+ allan.RgetAge() +"ans => eu avec RgetAge()")
+
+        //echnge entre guillemets =>  //Recrire(B"Je me nome allan j'ai "+ allan.RgetAge() +B"ans => eu avec getAge()")
+
         //coloration des ""
         try {
             ligne = ligne.replaceAll("(\".*\")", ANSI_BLUE + "$1" + ANSI_RESET);

@@ -3,9 +3,9 @@ constante:
 	OUI <-- 1
 variable:
 	i : entier
+	j : chaine
 DEBUT
 	i <-- 5
-    
 	ecrire("oui haha")
 	ecrire(i)
 FIN
