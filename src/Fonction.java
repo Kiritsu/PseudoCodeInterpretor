@@ -59,7 +59,7 @@ public final class Fonction {
         if (methodes.length > 1) {
             return executeRecursivement(methodes[0]).toString() + executeRecursivement(ligne.substring(0, methodes[0].length()));
         } else {
-            return execute(methodes[0]); //todo: méthode imbriquée.
+            return execute(methodes[0]); //todo: méthodes imbriquées.
         }
     }
 
