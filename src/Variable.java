@@ -34,7 +34,7 @@ public final class Variable {
     /**
      * Initialise une variable non constante.
      *
-     * @param nom Nom de la variable.
+     * @param nom  Nom de la variable.
      * @param type Type de la variable.
      */
     public Variable(String nom, String type) {
@@ -47,8 +47,8 @@ public final class Variable {
     /**
      * Initialise une variable constante.
      *
-     * @param nom Nom de la constante.
-     * @param type Type de la constante.
+     * @param nom    Nom de la constante.
+     * @param type   Type de la constante.
      * @param valeur Valeur de la constante.
      */
     public Variable(String nom, String type, String valeur) {
@@ -58,7 +58,7 @@ public final class Variable {
         this.constante = true;
         this.tracee = false;
 
-        Scripting.modifieVariable(nom, valeur);
+        modifieVariableDansScripting();
     }
 
     /**
@@ -69,6 +69,21 @@ public final class Variable {
     public void setValeur(String valeur) {
         if (!constante) {
             this.valeur = valeur;
+            modifieVariableDansScripting();
+        }
+    }
+
+    /**
+     * Met à jour la valeur de la variable dans notre classe Scripting.
+     */
+    public void modifieVariableDansScripting() {
+        if (type.equals("chaine")) {
+            Scripting.modifieVariable(nom, "\"" + valeur + "\"");
+        } else {
+            valeur.replace("vrai", "true")
+                    .replace("faux", "false")
+                    .replace(",", ".");
+
             Scripting.modifieVariable(nom, valeur);
         }
     }
