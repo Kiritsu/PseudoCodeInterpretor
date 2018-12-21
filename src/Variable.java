@@ -89,7 +89,7 @@ public final class Variable {
     }
 
     /**
-     * Indique si la variable courante est tracée. Ne fonctionne uniquement si la variable n'est pas une constante.
+     * Indique si la variable courante doit être tracée. Ne fonctionne uniquement si la variable n'est pas une constante.
      */
     public void setTracee(boolean tracee) {
         if (!constante) {
@@ -97,6 +97,10 @@ public final class Variable {
         }
     }
 
+    /**
+     * Indique si la variable est tracée.
+     * @return
+     */
     public boolean estTracee() {
         return this.tracee;
     }
