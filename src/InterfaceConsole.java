@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Interface de type console. Permet de gérer l'affichage du code et des différentes traces dans la console.
+ *
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
@@ -40,6 +41,7 @@ public final class InterfaceConsole {
 
     /**
      * Création de notre interface de type console et détermination du système d'exploitation utilisé.
+     *
      * @param lecteur Instance du lecteur de code.
      * @param interpreteur Instance de l'interpréteur.
      */
@@ -119,6 +121,7 @@ public final class InterfaceConsole {
     /**
      * Retourne la trace des variables en fonction de la ligne traitée. Cette méthode permet de correctement
      * formater l'affichage dans notre console.
+     *
      * @param i Ligne en train d'être traitée.
      * @return Le formattage de cette variable tracée.
      */

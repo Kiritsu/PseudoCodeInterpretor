@@ -1,6 +1,7 @@
 /**
  * Classe représentant une variable. Une variable est composée d'un nom, d'un type et d'une valeur.
  * Une variable peut être constante.
+ *
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
@@ -32,6 +33,7 @@ public final class Variable {
 
     /**
      * Initialise une variable non constante.
+     *
      * @param nom Nom de la variable.
      * @param type Type de la variable.
      */
@@ -44,6 +46,7 @@ public final class Variable {
 
     /**
      * Initialise une variable constante.
+     *
      * @param nom Nom de la constante.
      * @param type Type de la constante.
      * @param valeur Valeur de la constante.
@@ -60,6 +63,7 @@ public final class Variable {
 
     /**
      * Modifie la valeur de la variable. Ne fonctionne uniquement si la variable n'est pas une constante.
+     *
      * @param valeur Nouvelle valeur de la variable.
      */
     public void setValeur(String valeur) {

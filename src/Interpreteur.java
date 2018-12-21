@@ -4,6 +4,7 @@ import java.util.Scanner;
 /**
  * Classe principale. Elle contient les variables à tracer, les traces d'exécution
  * ainsi que la gestion de l'entrée clavier.
+ *
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
@@ -40,6 +41,7 @@ public final class Interpreteur {
 
     /**
      * Créé les différentes instances nécessaires au bon fonctionnement du programme.
+     *
      * @param chemin Chemin vers le fichier à interprêter.
      */
     public Interpreteur(String chemin) {
@@ -101,6 +103,7 @@ public final class Interpreteur {
 
     /**
      * Retourne la 'i'ème variable tracée.
+     *
      * @param i Index représentant la variable tracée à retourner.
      * @return
      */
@@ -123,6 +126,7 @@ public final class Interpreteur {
 
     /**
      * Initialise le programme.
+     *
      * @param args Non utilisé.
      */
     public static void main(String[] args) {

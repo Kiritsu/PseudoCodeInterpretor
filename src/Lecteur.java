@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Lecteur personnalisé de fichier.
+ *
  * @author Allan Mercou, Adrien Guey, Gauthier Salas, Remi Schneider
  * @version 1.0 2018-12-20
  */
@@ -30,6 +31,7 @@ public final class Lecteur {
 
     /**
      * Création d'un Lecteur à partir du fichier spécifié.
+     *
      * @param chemin Chemin vers le fichier.
      */
     public Lecteur(String chemin) {
