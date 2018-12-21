@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b3d10cd-de81-4a63-8a14-15f09735b6db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/InterfaceConsole.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pseudoCode/InterfaceConsole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Interpreteur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pseudoCode/Interpreteur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Scripting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pseudoCode/Scripting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Variable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pseudoCode/Variable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/algo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pseudoCode/algo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Fonction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fonction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InterfaceConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InterfaceConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interpreteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpreteur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scripting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scripting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Variable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/InterfaceConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="127" column="63" selection-start-line="127" selection-start-column="63" selection-end-line="127" selection-end-column="63" />
+            <state relative-caret-position="565">
+              <caret line="229" column="41" lean-forward="true" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -35,16 +25,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="107" column="38" selection-start-line="107" selection-start-column="38" selection-end-line="107" selection-end-column="38" />
+            <state relative-caret-position="640">
+              <caret line="232" column="25" lean-forward="true" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6869#6870#0" expanded="true" />
-                <element signature="e#7356#7357#0" expanded="true" />
-                <element signature="e#7544#7545#0" expanded="true" />
+                <element signature="e#7125#7126#0" expanded="true" />
+                <element signature="e#7612#7613#0" expanded="true" />
+                <element signature="e#7800#7801#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/Scripting.java" />
         <option value="$PROJECT_DIR$/src/Variable.java" />
         <option value="$PROJECT_DIR$/src/Fonction.java" />
-        <option value="$PROJECT_DIR$/src/Interpreteur.java" />
         <option value="$PROJECT_DIR$/src/InterfaceConsole.java" />
+        <option value="$PROJECT_DIR$/src/Interpreteur.java" />
       </list>
     </option>
   </component>
@@ -164,7 +154,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545400662248" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545401960143" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -316,25 +306,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
+    <entry file="file://$PROJECT_DIR$/src/InterfaceConsole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="107" column="38" selection-start-line="107" selection-start-column="38" selection-end-line="107" selection-end-column="38" />
+        <state relative-caret-position="565">
+          <caret line="229" column="41" lean-forward="true" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6869#6870#0" expanded="true" />
-            <element signature="e#7356#7357#0" expanded="true" />
-            <element signature="e#7544#7545#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/InterfaceConsole.java">
+    <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="127" column="63" selection-start-line="127" selection-start-column="63" selection-end-line="127" selection-end-column="63" />
+        <state relative-caret-position="640">
+          <caret line="232" column="25" lean-forward="true" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#7125#7126#0" expanded="true" />
+            <element signature="e#7612#7613#0" expanded="true" />
+            <element signature="e#7800#7801#0" expanded="true" />
           </folding>
         </state>
       </provider>

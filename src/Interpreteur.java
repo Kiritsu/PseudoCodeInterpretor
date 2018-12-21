@@ -206,13 +206,11 @@ public final class Interpreteur {
             }
 
             try {
+                //todo: finir executeRecursif pour l'utiliser ici.
                 separation[1] = Fonction.execute(separation[1].trim()).toString();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-            System.out.println(separation[1]);
 
             v.setValeur(separation[1]);
 
@@ -222,7 +220,11 @@ public final class Interpreteur {
             }
         }
 
-
+        if (ligne.matches(" *([é\\w]+[\\s]*)\\(")) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!");
+        } else {
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        }
     }
 
     public Variable getVariableParNom(String nom) {
