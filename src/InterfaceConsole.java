@@ -24,7 +24,7 @@ public final class InterfaceConsole {
 
     /**
      * Instance de notre interpréteur.
-     *
+     * <p>
      * Nous permet d'avoir une liaison avec les choix de l'utilisateur en entrée clavier. Nous pourrions les gérer
      * ici, mais celà nous permet de pouvoir avoir une interface graphique utilisant ses mêmes données sans pour
      * autant créer une dépendance entre les deux interfaces.
@@ -46,7 +46,7 @@ public final class InterfaceConsole {
     /**
      * Création de notre interface de type console et détermination du système d'exploitation utilisé.
      *
-     * @param lecteur Instance du lecteur de code.
+     * @param lecteur      Instance du lecteur de code.
      * @param interpreteur Instance de l'interpréteur.
      */
     public InterfaceConsole(Lecteur lecteur, Interpreteur interpreteur) {
@@ -110,11 +110,11 @@ public final class InterfaceConsole {
             }
 
             ligne = ligne.replace("\t", "    ");
-            ligne = colorie(String.format("%-85s", ligne));
 
             if (i == numLigneTraitee) {
                 str.append(String.format(ANSI_BG_RED + "|  %02d  | %-85s |" + ANSI_RESET + " %-41s |\n", i + 1, ligne, getTraceVariable(i)));
             } else {
+                ligne = colorie(String.format("%-85s", ligne));
                 str.append(String.format("|  %02d  | %-85s | %-41s |" + "\n", i + 1, ligne, getTraceVariable(i)));
             }
         }
@@ -125,9 +125,9 @@ public final class InterfaceConsole {
         str.append("+" + tirets + "+\n");
         str.append(String.format("| Console %128s |\n", " "));
         str.append("+" + tirets + "+\n");
-        str.append(String.format("| %-136s |\n", getTraceExecution(0)));
-        str.append(String.format("| %-136s |\n", getTraceExecution(1)));
-        str.append(String.format("| %-136s |\n", getTraceExecution(2)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-135s " + ANSI_RESET + " |\n", getTraceExecution(0)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-135s " + ANSI_RESET + " |\n", getTraceExecution(1)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-133s " + ANSI_RESET + " |\n", getTraceExecution(2)));
         str.append("+" + tirets + "+\n");
 
         if (windowsUser) {
@@ -152,26 +152,49 @@ public final class InterfaceConsole {
 
         commentaire = ANSI_GREEN + commentaire + ANSI_RESET;
 
-        //coloration des fonctions.
+        String copie = ligne;
+
+        try {
+            copie = ligne.replaceAll("(\".*\")", ANSI_BLUE + "$1" + ANSI_RESET);
+
+        } catch (Exception e) {
+
+        }
+
         try {
             ligne = ligne.replaceAll("([é\\w]+[\\s]*)\\(", ANSI_YELLOW + "$1" + ANSI_RESET + "(");
         } catch (Exception e) {
 
         }
 
-        //ecrire("Je me nome allan j'ai "+ allan.getAge() +"ans => eu avec getAge()")
-        //Recrire("Je me nome allan j'ai "+ allan.RgetAge() +"ans => eu avec RgetAge()")
-
-        //echnge entre guillemets =>  //Recrire(B"Je me nome allan j'ai "+ allan.RgetAge() +B"ans => eu avec getAge()")
-
-        //coloration des ""
-        try {
-            ligne = ligne.replaceAll("(\".*\")", ANSI_BLUE + "$1" + ANSI_RESET);
-        } catch (Exception e) {
-
-        }
+        ligne = reformer(copie, ligne);
 
         return ligne + commentaire;
+    }
+
+    /**
+     * Reforme correctement les couleurs de la chaîne afin de gérer les fonctions imbriquées
+     * en ignorant celles se trouvant à l'intérieur de guillemets.
+     *
+     * @param copie Copie de notre chaîne, la couleur pour les guillemets y est appliquée.
+     * @param base  Base de notre chaîne, la couleur pour les fonctions y est appliquée.
+     * @return Un mélange de la base et de la copie, avec les couleur comme il le faut.
+     */
+    public String reformer(String copie, String base) {
+        String ret = "";
+
+        String[] copies = copie.split("\"");
+        String[] bases = base.split("\"");
+
+        for (int i = 0; i < copies.length; i++) {
+            if (i % 2 != 0) {
+                ret += ANSI_BLUE + "\"" + copies[i] + "\"" + ANSI_RESET;
+            } else {
+                ret += bases[i];
+            }
+        }
+
+        return ret;
     }
 
     /**

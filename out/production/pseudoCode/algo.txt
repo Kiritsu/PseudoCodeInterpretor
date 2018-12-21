@@ -5,7 +5,12 @@ variable:
 	i : entier
 	j : chaine
 DEBUT
-	i <-- 5
-	ecrire("oui haha")
+	i <-- 5 * (i + 1)
+    i <-- hasard(10)
+    j <-- "oui"
+    j <-- "non"
+    i <-- 1 - 3
+    j <-- "heheboy"
+	ecrire("oui haha on fait hasard(3) " © hasard(3))
 	ecrire(i)
 FIN

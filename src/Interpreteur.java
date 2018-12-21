@@ -68,17 +68,13 @@ public final class Interpreteur {
         creerVariables();
         demanderTracage();
 
-        for (Variable v : variables) {
-            System.out.println(v);
-        }
-
         while (true) {
             if (numLigneTraitee >= lecteur.getLignes().length) {
                 break;
             }
 
             console.actualiserConsole();
-            interprete();
+            interprete(numLigneTraitee);
 
             String valeur = scanner.nextLine();
             if (valeur.equals("")) {
@@ -89,12 +85,39 @@ public final class Interpreteur {
                 if (numLigneTraitee < 0) {
                     numLigneTraitee = 0;
                 }
+
+                reinitialiser(numLigneTraitee);
             } else if (valeur.toLowerCase().startsWith("l")) {
                 numLigneTraitee = Integer.valueOf(valeur.substring(1)) - 1;
+                reinitialiser(numLigneTraitee);
             } else if (valeur.toLowerCase().equals("q")) {
                 break;
             }
+
+            if (!valeur.equals("")) {
+                traceExecution.add(valeur);
+            }
         }
+    }
+
+    /**
+     * Effectue une réinterprêtation du code de la première jusqu'à la ligne i.
+     * @param i Ligne à laquelle nous devons nous arrêter.
+     */
+    public void reinitialiser(int i) {
+        this.variablesTracees.clear();
+        Scripting.reset();
+
+        for (Variable v : variables) {
+            v.setValeurDefaut();
+        }
+
+        for (int x = 0; x < i; x++) {
+            interprete(x);
+        }
+
+        numLigneTraitee = i;
+        console.actualiserConsole();
     }
 
     /**
@@ -167,11 +190,49 @@ public final class Interpreteur {
     }
 
     /**
-     * Interprête les lignes de code allant de la première jusqu'à celle étant actuellement traitée.
+     * Interprête la ligne à l'index donné.
+     * @param i Ligne à interprêter.
      */
-    public void interprete() {
-        String ligne = lecteur.getLignes()[numLigneTraitee];
+    public void interprete(int i) {
+        String ligne = lecteur.getLignes()[i].replace("\t", "");
 
+        //assignation de variable.
+        if (ligne.matches(" *(\\w+) *<-- .*")) {
+            String[] separation = ligne.split("<--");
+
+            Variable v = getVariableParNom(separation[0].trim());
+            if (v == null) {
+                return;
+            }
+
+            try {
+                separation[1] = Fonction.execute(separation[1].trim()).toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            System.out.println(separation[1]);
+
+            v.setValeur(separation[1]);
+
+            if (v.estTracee()) {
+                variablesTracees.add(new Variable(v));
+                console.actualiserConsole();
+            }
+        }
+
+
+    }
+
+    public Variable getVariableParNom(String nom) {
+        for (Variable v : variables) {
+            if (v.getNom().equals(nom)) {
+                return v;
+            }
+        }
+
+        return null;
     }
 
     /**

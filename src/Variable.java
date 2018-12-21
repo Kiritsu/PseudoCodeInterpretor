@@ -32,6 +32,11 @@ public final class Variable {
     private boolean tracee;
 
     /**
+     * Empêche la variable d'être manipulée.
+     */
+    private boolean bloquee;
+
+    /**
      * Initialise une variable non constante.
      *
      * @param nom  Nom de la variable.
@@ -42,6 +47,8 @@ public final class Variable {
         this.type = type;
         this.valeur = null;
         this.constante = false;
+        this.bloquee = false;
+        setValeurDefaut();
     }
 
     /**
@@ -57,6 +64,48 @@ public final class Variable {
         this.valeur = valeur;
         this.constante = true;
         this.tracee = false;
+        this.bloquee = false;
+        modifieVariableDansScripting();
+    }
+
+    /**
+     * Initialise une variable constante par copie. Utilisation exclusive pour la trace des variables.
+     *
+     * @param copie Variable à copier.
+     */
+    public Variable(Variable copie) {
+        this.nom = copie.nom;
+        this.type = copie.type;
+        this.valeur = copie.valeur;
+        this.constante = copie.constante;
+        this.tracee = copie.tracee;
+        this.bloquee = true;
+    }
+
+    /**
+     * Remet la valeur de cette variable par défaut.
+     */
+    public void setValeurDefaut() {
+        switch (type) {
+            case "chaîne":
+            case "chaine":
+                this.valeur = "\"\"";
+                break;
+            case "entier":
+                this.valeur = "0";
+                break;
+            case "reel":
+            case "réel":
+                this.valeur = "0.0";
+                break;
+            case "booleen":
+            case "booléen":
+                this.valeur = "false";
+                break;
+            case "caractere":
+                this.valeur = "\0";
+                break;
+        }
 
         modifieVariableDansScripting();
     }
@@ -67,6 +116,10 @@ public final class Variable {
      * @param valeur Nouvelle valeur de la variable.
      */
     public void setValeur(String valeur) {
+        if (bloquee) {
+            return;
+        }
+
         if (!constante) {
             this.valeur = valeur;
             modifieVariableDansScripting();
@@ -75,23 +128,29 @@ public final class Variable {
 
     /**
      * Met à jour la valeur de la variable dans notre classe Scripting.
+     *
+     * @return Retourne un booléen pour bloquer la méthode jusqu'à sa terminaison.
      */
-    public void modifieVariableDansScripting() {
-        if (type.equals("chaine")) {
-            Scripting.modifieVariable(nom, "\"" + valeur + "\"");
-        } else {
-            valeur.replace("vrai", "true")
-                    .replace("faux", "false")
-                    .replace(",", ".");
-
-            Scripting.modifieVariable(nom, valeur);
+    public boolean modifieVariableDansScripting() {
+        if (bloquee) {
+            return false;
         }
+
+        valeur.replace("vrai", "true").replace("faux", "false").replace(",", ".");
+
+        this.valeur = Scripting.modifieVariable(nom, valeur).toString();
+
+        return true;
     }
 
     /**
      * Indique si la variable courante doit être tracée. Ne fonctionne uniquement si la variable n'est pas une constante.
      */
     public void setTracee(boolean tracee) {
+        if (bloquee) {
+            return;
+        }
+
         if (!constante) {
             this.tracee = tracee;
         }
@@ -99,6 +158,7 @@ public final class Variable {
 
     /**
      * Indique si la variable est tracée.
+     *
      * @return
      */
     public boolean estTracee() {

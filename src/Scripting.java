@@ -34,17 +34,28 @@ public final class Scripting {
 
     }
 
+    public static void reset() {
+        factory = new ScriptEngineManager();
+        engine = factory.getEngineByExtension("js");
+    }
+
     /**
-     * Modifie la valeur d'une variable.
+     * Modifie et retourne la valeur d'une variable.
      *
      * @param nom Nom de la variable à modifier.
      * @param valeur Nouvelle valeur de cette variable.
      */
-    public static void modifieVariable(String nom, String valeur) {
+    public static Object modifieVariable(String nom, String valeur) {
         try {
-            engine.eval(nom + "=" + valeur);
-        } catch (Exception e) {
+            if (valeur.length() == 0) {
+                valeur = "\"\"";
+            }
 
+            engine.eval(nom + "=" + valeur);
+            return (Object) engine.eval(nom);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -57,6 +68,7 @@ public final class Scripting {
         try {
             return (boolean) engine.eval(condition);
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -71,6 +83,7 @@ public final class Scripting {
         try {
             return engine.eval(calcul);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

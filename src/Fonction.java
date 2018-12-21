@@ -27,7 +27,9 @@ public final class Fonction {
      * @throws UnexpectedException Lorsque la méthode n'a pas pu être trouvée.
      */
     public static Object execute(String ligne) throws UnexpectedException {
-        ligne = ligne.substring(0, ligne.indexOf("//"));
+        if (ligne.contains("//")) {
+            ligne = ligne.substring(0, ligne.indexOf("//"));
+        }
 
         String nomMethode = ligne.substring(0, ligne.indexOf("("));
         String parametres = ligne.substring(ligne.indexOf("(") + 1, ligne.lastIndexOf(")"));
