@@ -229,10 +229,12 @@ public final class Interpreteur {
                     case "lire":
                         System.out.println("Entrez une valeur : ");
                         String entree = scanner.nextLine();
+
                         Variable var = getVariableParNom(ligne.substring(ligne.indexOf("(") + 1, ligne.indexOf(")")));
                         if (var == null) {
                             throw new Exception("Variable introuvable.");
                         }
+                        
                         var.setValeur(entree);
                         traceExecution.add("lire() => " + var.getValeur());
 
