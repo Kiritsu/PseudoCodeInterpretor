@@ -131,12 +131,16 @@ public final class Variable {
      *
      * @return Retourne un booléen pour bloquer la méthode jusqu'à sa terminaison.
      */
-    public boolean modifieVariableDansScripting() {
+    private boolean modifieVariableDansScripting() {
         if (bloquee) {
             return false;
         }
 
-        valeur.replace("vrai", "true").replace("faux", "false").replace(",", ".");
+        if (type == "booleen") {
+            valeur = valeur.replace("vrai", "true").replace("faux", "false");
+        } else if (type == "reel") {
+            valeur = valeur.replace(",", ".");
+        }
 
         this.valeur = Scripting.modifieVariable(nom, valeur).toString();
 

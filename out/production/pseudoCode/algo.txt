@@ -6,11 +6,14 @@ variable:
 	j : chaine
 DEBUT
 	i <-- 5 * (i + 1)
-    i <-- hasard(10)
-    j <-- "oui"
-    j <-- "non"
-    i <-- 1 - 3
-    j <-- "heheboy"
-	ecrire("oui haha on fait hasard(3) " © hasard(3))
+	i <-- hasard(10)
+	j <-- "oui"
+	j <-- "non"
+	i <-- 1 - 3
+	j <-- "heheboy"
+	lire(i)
+	ecrire("valeur de i " + i)
+	ecrire("oui haha on fait hasard(3) " + hasard(3))
+	ecrire("il", " ├®tait ", "une", "fois ", (hasard(3) + 1), " petits cochons")
 	ecrire(i)
 FIN

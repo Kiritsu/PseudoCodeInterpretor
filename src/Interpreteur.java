@@ -59,6 +59,8 @@ public final class Interpreteur {
         traceExecution = new ArrayList<>();
 
         numLigneTraitee = 0;
+
+        Scripting.setInterpreteur(this);
     }
 
     /**
@@ -140,7 +142,7 @@ public final class Interpreteur {
                 variables.add(new Variable(vals[0], vals[1]));
             } else if (ligne.replace("\t", "").matches(" *(\\w+) *<-- *(\\w+)")) {
                 String[] vals = ligne.split("<--");
-                variables.add(new Variable(vals[0].replace(" ", ""), determineType(vals[1]), vals[1]));
+                variables.add(new Variable(vals[0].replace(" ", ""), determineType(vals[1].trim()), vals[1].trim()));
             }
         }
 
@@ -205,12 +207,7 @@ public final class Interpreteur {
                 return;
             }
 
-            try {
-                //todo: finir executeRecursif pour l'utiliser ici.
-                separation[1] = Fonction.execute(separation[1].trim()).toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ligne = ligne.replace("<--", "=");
 
             v.setValeur(separation[1]);
 
@@ -220,13 +217,42 @@ public final class Interpreteur {
             }
         }
 
-        if (ligne.matches(" *([é\\w]+[\\s]*)\\(")) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!");
-        } else {
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        if (ligne.matches(" *[é\\w]+\\(.*\\)")) {
+            try {
+                String nomFonction = ligne.split("\\(")[0];
+                switch (nomFonction) {
+                    case "ecrire":
+                    case "écrire":
+                        String resultat = Scripting.execute(ligne.replace(",", "+")).toString();
+                        traceExecution.add("ecrire() => " + resultat);
+                        break;
+                    case "lire":
+                        System.out.println("Entrez une valeur : ");
+                        String entree = scanner.nextLine();
+                        Variable var = getVariableParNom(ligne.substring(ligne.indexOf("(") + 1, ligne.indexOf(")")));
+                        if (var == null) {
+                            throw new Exception("Variable introuvable.");
+                        }
+                        var.setValeur(entree);
+                        traceExecution.add("lire() => " + var.getValeur());
+
+                        if (var.estTracee()) {
+                            variablesTracees.add(var);
+                        }
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else { //conditions, boucles, etc.
+
         }
     }
 
+    /**
+     * Retourne la variable en fonction du nom donné en paramètre.
+     * @param nom Nom de la variable à chercher.
+     */
     public Variable getVariableParNom(String nom) {
         for (Variable v : variables) {
             if (v.getNom().equals(nom)) {

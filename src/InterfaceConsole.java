@@ -109,7 +109,7 @@ public final class InterfaceConsole {
                 ligne = " ";
             }
 
-            ligne = ligne.replace("\t", "    ");
+            ligne = ligne.replace("\t", "        ");
 
             if (i == numLigneTraitee) {
                 str.append(String.format(ANSI_BG_RED + "|  %02d  | %-85s |" + ANSI_RESET + " %-41s |\n", i + 1, ligne, getTraceVariable(i)));
@@ -156,7 +156,6 @@ public final class InterfaceConsole {
 
         try {
             copie = ligne.replaceAll("(\".*\")", ANSI_BLUE + "$1" + ANSI_RESET);
-
         } catch (Exception e) {
 
         }
@@ -232,8 +231,6 @@ public final class InterfaceConsole {
         }
 
         if (traceExecution.size() >= 3) {
-            System.out.println("Size : " + traceExecution.size() + " ; i: " + i);
-
             str.append(traceExecution.get(traceExecution.size() - (3 - i)));
         } else {
             str.append(traceExecution.get(i));
