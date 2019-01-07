@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b3d10cd-de81-4a63-8a14-15f09735b6db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Interpreteur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interpreteur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/InterfaceConsole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Interpreteur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Lecteur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Scripting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pseudoCode/Variable.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/InterfaceConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="2480">
               <caret line="157" column="80" selection-start-line="157" selection-start-column="80" selection-end-line="157" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -28,13 +33,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="236" column="24" selection-start-line="236" selection-start-column="24" selection-end-line="236" selection-end-column="24" />
+            <state relative-caret-position="784">
+              <caret line="249" lean-forward="true" selection-start-line="249" selection-end-line="249" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8219#8220#0" expanded="true" />
-                <element signature="e#8706#8707#0" expanded="true" />
-                <element signature="e#8894#8895#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Scripting.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="64" column="107" selection-start-line="64" selection-start-column="107" selection-end-line="64" selection-end-column="107" />
+            <state relative-caret-position="1632">
+              <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3590#3591#0" expanded="true" />
@@ -56,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Lecteur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
+            <state relative-caret-position="960">
               <caret line="60" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -68,22 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Variable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="1968">
               <caret line="123" selection-start-line="123" selection-end-line="123" selection-end-column="33" />
-              <folding>
-                <element signature="e#4023#4024#0" expanded="true" />
-                <element signature="e#4057#4058#0" expanded="true" />
-                <element signature="e#4148#4149#0" expanded="true" />
-                <element signature="e#4182#4183#0" expanded="true" />
-                <element signature="e#4269#4270#0" expanded="true" />
-                <element signature="e#4301#4302#0" expanded="true" />
-                <element signature="e#4386#4387#0" expanded="true" />
-                <element signature="e#4417#4418#0" expanded="true" />
-                <element signature="e#4515#4516#0" expanded="true" />
-                <element signature="e#4552#4553#0" expanded="true" />
-                <element signature="e#4598#4599#0" expanded="true" />
-                <element signature="e#4671#4672#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -139,22 +127,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="pseudoCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pseudoCode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pseudoCode" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pseudoCode" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
@@ -202,8 +175,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.Interpreteur" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -226,15 +199,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18283582" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18496802" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -263,27 +235,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Algorithme.java" />
     <entry file="file://$PROJECT_DIR$/src/InterfaceBase.java" />
-    <entry file="file://$PROJECT_DIR$/src/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="123" selection-start-line="123" selection-end-line="123" selection-end-column="33" />
-          <folding>
-            <element signature="e#4023#4024#0" expanded="true" />
-            <element signature="e#4057#4058#0" expanded="true" />
-            <element signature="e#4148#4149#0" expanded="true" />
-            <element signature="e#4182#4183#0" expanded="true" />
-            <element signature="e#4269#4270#0" expanded="true" />
-            <element signature="e#4301#4302#0" expanded="true" />
-            <element signature="e#4386#4387#0" expanded="true" />
-            <element signature="e#4417#4418#0" expanded="true" />
-            <element signature="e#4515#4516#0" expanded="true" />
-            <element signature="e#4552#4553#0" expanded="true" />
-            <element signature="e#4598#4599#0" expanded="true" />
-            <element signature="e#4671#4672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Fonction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -294,19 +245,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lecteur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/InterfaceConsole.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="2480">
           <caret line="157" column="80" selection-start-line="157" selection-start-column="80" selection-end-line="157" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -316,8 +257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Scripting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="64" column="107" selection-start-line="64" selection-start-column="107" selection-end-line="64" selection-end-column="107" />
+        <state relative-caret-position="1632">
+          <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3590#3591#0" expanded="true" />
@@ -325,15 +266,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
+    <entry file="file://$PROJECT_DIR$/src/Lecteur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="236" column="24" selection-start-line="236" selection-start-column="24" selection-end-line="236" selection-end-column="24" />
+        <state relative-caret-position="960">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8219#8220#0" expanded="true" />
-            <element signature="e#8706#8707#0" expanded="true" />
-            <element signature="e#8894#8895#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Variable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1968">
+          <caret line="123" selection-start-line="123" selection-end-line="123" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interpreteur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="784">
+          <caret line="249" lean-forward="true" selection-start-line="249" selection-end-line="249" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
