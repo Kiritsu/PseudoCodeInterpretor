@@ -125,9 +125,9 @@ public final class InterfaceConsole {
         str.append("+" + tirets + "+\n");
         str.append(String.format("| Console %128s |\n", " "));
         str.append("+" + tirets + "+\n");
-        str.append(String.format("| " + ANSI_YELLOW + " %-135s " + ANSI_RESET + " |\n", getTraceExecution(0)));
-        str.append(String.format("| " + ANSI_YELLOW + " %-135s " + ANSI_RESET + " |\n", getTraceExecution(1)));
-        str.append(String.format("| " + ANSI_YELLOW + " %-133s " + ANSI_RESET + " |\n", getTraceExecution(2)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-134s " + ANSI_RESET + " |\n", getTraceExecution(0)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-134s " + ANSI_RESET + " |\n", getTraceExecution(1)));
+        str.append(String.format("| " + ANSI_YELLOW + " %-134s " + ANSI_RESET + " |\n", getTraceExecution(2)));
         str.append("+" + tirets + "+\n");
 
         if (windowsUser) {
@@ -222,20 +222,16 @@ public final class InterfaceConsole {
      * @param i 'i'ème dernière trace d'exécution.
      */
     public String getTraceExecution(int i) {
-        StringBuilder str = new StringBuilder();
-
         ArrayList<String> traceExecution = interpreteur.getTraceExecution();
 
         if (traceExecution.size() <= i) {
-            return str.toString();
+            return "";
         }
 
         if (traceExecution.size() >= 3) {
-            str.append(traceExecution.get(traceExecution.size() - (3 - i)));
+            return traceExecution.get(traceExecution.size() - (3 - i));
         } else {
-            str.append(traceExecution.get(i));
+            return traceExecution.get(i);
         }
-
-        return str.toString();
     }
 }

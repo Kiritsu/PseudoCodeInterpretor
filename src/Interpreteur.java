@@ -116,6 +116,9 @@ public final class Interpreteur {
 
         for (int x = 0; x < i; x++) {
             interprete(x);
+            numLigneTraitee = x + 1;
+            console.actualiserConsole();
+            numLigneTraitee = x - 1;
         }
 
         numLigneTraitee = i;
@@ -227,13 +230,13 @@ public final class Interpreteur {
                         traceExecution.add("ecrire() => " + resultat);
                         break;
                     case "lire":
-                        System.out.println("Entrez une valeur : ");
-                        String entree = scanner.nextLine();
-
                         Variable var = getVariableParNom(ligne.substring(ligne.indexOf("(") + 1, ligne.indexOf(")")));
                         if (var == null) {
                             throw new Exception("Variable introuvable.");
                         }
+
+                        System.out.println("Entrez une valeur pour la variable " + var.getNom() + " de type " + var.getType() + " :");
+                        String entree = scanner.nextLine();
                         
                         var.setValeur(entree);
                         traceExecution.add("lire() => " + var.getValeur());
@@ -246,8 +249,39 @@ public final class Interpreteur {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else { //conditions, boucles, etc.
 
+            console.actualiserConsole();
+        } else if (ligne.contains("si ") && ligne.endsWith(" alors")) { //condition si alors
+            String condition = ligne.substring(ligne.indexOf("si ") + 3, ligne.lastIndexOf(" alors"));
+            if (Scripting.evalue(condition)) {
+                scanner.nextLine();
+                String contenu;
+                do {
+                    numLigneTraitee++;
+                    interprete(numLigneTraitee);
+                    contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
+                    scanner.nextLine();
+                    console.actualiserConsole();
+                } while (!contenu.equals("sinon") && !contenu.equals("fsi"));
+
+                if (contenu.equals("sinon")) {
+                    do {
+                        numLigneTraitee++;
+                        contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
+                        console.actualiserConsole();
+                    } while(!contenu.equals("fsi"));
+                }
+
+                console.actualiserConsole();
+            } else {
+                String contenu;
+                do {
+                    System.out.println("OUIIIIIIIIIIIIIIIIIIIIII");
+                    numLigneTraitee++;
+                    contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
+                    console.actualiserConsole();
+                } while (!contenu.equals("sinon"));
+            }
         }
     }
 

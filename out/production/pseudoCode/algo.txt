@@ -14,6 +14,11 @@ DEBUT
 	lire(i)
 	ecrire("valeur de i " + i)
 	ecrire("oui haha on fait hasard(3) " + hasard(3))
-	ecrire("il", " ├®tait ", "une", "fois ", (hasard(3) + 1), " petits cochons")
+	ecrire("il", " etait ", "une ", "fois ", (hasard(3)+1), " cochons")
 	ecrire(i)
+	si i == 12 alors
+		ecrire("tu as 12 ans")
+	sinon
+		ecrire("ntm")
+	fsi
 FIN

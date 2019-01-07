@@ -1,5 +1,4 @@
 import bsh.Interpreter;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Utilisation simple de l'API de scripting de javax.script. Cette classe nous permet d'effectuer des calculs,
