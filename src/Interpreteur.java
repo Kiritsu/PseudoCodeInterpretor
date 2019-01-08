@@ -252,7 +252,7 @@ public final class Interpreteur {
 
             console.actualiserConsole();
         } else if (ligne.contains("si ") && ligne.endsWith(" alors")) { //condition si alors
-            String condition = ligne.substring(ligne.indexOf("si ") + 3, ligne.lastIndexOf(" alors"));
+            String condition = ligne.substring(ligne.indexOf("si ") + 3, ligne.lastIndexOf(" alors")).replace(" ou ", "||").replace(" et ", "&&");
             if (Scripting.evalue(condition)) {
                 scanner.nextLine();
                 String contenu;
@@ -276,12 +276,30 @@ public final class Interpreteur {
             } else {
                 String contenu;
                 do {
-                    System.out.println("OUIIIIIIIIIIIIIIIIIIIIII");
                     numLigneTraitee++;
                     contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
                     console.actualiserConsole();
                 } while (!contenu.equals("sinon"));
             }
+        } else if (ligne.contains("tant que ") && ligne.endsWith(" faire")) {
+            String condition = ligne.substring(ligne.indexOf("tant que ") + 9, ligne.lastIndexOf(" faire")).replace(" ou ", "||").replace(" et ", "&&");
+            int baseLigne = numLigneTraitee;
+            while (Scripting.evalue(condition)) {
+                for (int ind = numLigneTraitee; !lecteur.getLignes()[ind].contains("ftq"); ind++) {
+                    numLigneTraitee = baseLigne + 1;
+                    interprete(ind);
+                    console.actualiserConsole();
+                    scanner.nextLine();
+                }
+
+                numLigneTraitee = baseLigne;
+                console.actualiserConsole();
+            }
+
+            do {
+                numLigneTraitee++;
+                console.actualiserConsole();
+            } while (!lecteur.getLignes()[numLigneTraitee].contains("ftq"));
         }
     }
 
