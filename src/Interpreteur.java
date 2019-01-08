@@ -76,7 +76,7 @@ public final class Interpreteur {
             }
 
             console.actualiserConsole();
-            interprete(numLigneTraitee);
+            interprete(numLigneTraitee, false);
 
             String valeur = scanner.nextLine();
             if (valeur.equals("")) {
@@ -114,14 +114,15 @@ public final class Interpreteur {
             v.setValeurDefaut();
         }
 
-        for (int x = 0; x < i; x++) {
-            interprete(x);
-            numLigneTraitee = x + 1;
-            console.actualiserConsole();
-            numLigneTraitee = x - 1;
+        int x;
+        for (x = 0; x < i; x++) {
+            numLigneTraitee = x;
+            if (!interprete(x, true)) {
+                break;
+            }
         }
 
-        numLigneTraitee = i;
+        numLigneTraitee = x;
         console.actualiserConsole();
     }
 
@@ -198,8 +199,9 @@ public final class Interpreteur {
      * Interprête la ligne à l'index donné.
      * @param i Ligne à interprêter.
      */
-    public void interprete(int i) {
+    public boolean interprete(int i, boolean reset) {
         String ligne = lecteur.getLignes()[i].replace("\t", "");
+        console.actualiserConsole();
 
         //assignation de variable.
         if (ligne.matches(" *(\\w+) *<-- .*")) {
@@ -207,20 +209,15 @@ public final class Interpreteur {
 
             Variable v = getVariableParNom(separation[0].trim());
             if (v == null) {
-                return;
+                return false;
             }
-
-            ligne = ligne.replace("<--", "=");
 
             v.setValeur(separation[1]);
 
             if (v.estTracee()) {
                 variablesTracees.add(new Variable(v));
-                console.actualiserConsole();
             }
-        }
-
-        if (ligne.matches(" *[é\\w]+\\(.*\\)")) {
+        } else if (ligne.matches(" *[é\\w]+\\(.*\\)")) {
             try {
                 String nomFonction = ligne.split("\\(")[0];
                 switch (nomFonction) {
@@ -235,7 +232,7 @@ public final class Interpreteur {
                             throw new Exception("Variable introuvable.");
                         }
 
-                        System.out.println("Entrez une valeur pour la variable " + var.getNom() + " de type " + var.getType() + " :");
+                        System.out.println("Entrez une valeur pour la variable " + var.getNom() + " de type " + var.getType() + " : ");
                         String entree = scanner.nextLine();
                         
                         var.setValeur(entree);
@@ -249,26 +246,32 @@ public final class Interpreteur {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            console.actualiserConsole();
         } else if (ligne.contains("si ") && ligne.endsWith(" alors")) { //condition si alors
+            if (reset) {
+                return false;
+            }
+
             String condition = ligne.substring(ligne.indexOf("si ") + 3, ligne.lastIndexOf(" alors")).replace(" ou ", "||").replace(" et ", "&&");
+
             if (Scripting.evalue(condition)) {
-                scanner.nextLine();
                 String contenu;
                 do {
                     numLigneTraitee++;
-                    interprete(numLigneTraitee);
-                    contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
-                    scanner.nextLine();
+                    interprete(numLigneTraitee, false);
+
                     console.actualiserConsole();
+                    scanner.nextLine();
+
+                    contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
                 } while (!contenu.equals("sinon") && !contenu.equals("fsi"));
 
                 if (contenu.equals("sinon")) {
                     do {
                         numLigneTraitee++;
-                        contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
+
                         console.actualiserConsole();
+
+                        contenu = lecteur.getLignes()[numLigneTraitee].replace("\t", "");
                     } while(!contenu.equals("fsi"));
                 }
 
@@ -285,22 +288,23 @@ public final class Interpreteur {
             String condition = ligne.substring(ligne.indexOf("tant que ") + 9, ligne.lastIndexOf(" faire")).replace(" ou ", "||").replace(" et ", "&&");
             int baseLigne = numLigneTraitee;
             while (Scripting.evalue(condition)) {
-                for (int ind = numLigneTraitee; !lecteur.getLignes()[ind].contains("ftq"); ind++) {
-                    numLigneTraitee = baseLigne + 1;
-                    interprete(ind);
+                do {
+                    numLigneTraitee++;
+                    interprete(numLigneTraitee, false);
                     console.actualiserConsole();
                     scanner.nextLine();
-                }
+                } while (!lecteur.getLignes()[numLigneTraitee].contains("ftq"));
 
                 numLigneTraitee = baseLigne;
-                console.actualiserConsole();
             }
 
             do {
                 numLigneTraitee++;
-                console.actualiserConsole();
             } while (!lecteur.getLignes()[numLigneTraitee].contains("ftq"));
         }
+
+        console.actualiserConsole();
+        return true;
     }
 
     /**

@@ -19,7 +19,7 @@ DEBUT
 	ecrire("il", " etait ", "une ", "fois ", (hasard(3)+1), " cochons")
 	ecrire(i)
 
-	si i >= 18 et j == "oui" alors
+	si i >= 18 alors
 		ecrire("tu es majeur")
 	sinon
 		ecrire("tu es mineur ou oui est different de oui")
